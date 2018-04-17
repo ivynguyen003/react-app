@@ -1,0 +1,73 @@
+<html>
+  <head>
+    <title>React App</title>
+  </head>
+  <body>
+    
+    <div id="root"></div><!--UI container-->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/16.1.0/umd/react.development.js"></script><!--render react to Dom-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/16.1.0/umd/react-dom.development.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.34/browser.min.js"></script><!--enable JSX & ES6-->
+    <script type="text/babel">
+
+       function formatDate(date){
+         return date.toLocaleDateString();//set the format of the date to US
+       }
+       
+       function Avatar(props){
+         return (
+          <img className="Avatar"
+            style={{width:700}}
+            src={props.user.avatarUrl}//why use user instead of author?
+            alt={props.user.name}//is props 
+          />
+         );
+       }
+
+       function UserInfo(props)  {
+        return (
+          <div className="UserInfo">
+            <Avatar user={props.user}/>
+            <div className="UserInfo-name">
+              {props.user.name}
+            </div>
+          </div>
+        );
+       }
+
+       function Comment(props){
+        return (
+          <div className="Comment">
+            <UserInfo user={props.author}/>
+            <div className="Comment-text">
+              {props.text}
+            </div>
+            <div className="Comment-date">
+              {formatDate(props.date)}
+            </div>
+          </div>
+         )
+       }
+
+      const comment = {
+        date: new Date(),// create new Date object
+        text: 'I love matcha ice cream',
+        author:{
+          name: 'Ice-cream Lover',
+          avatarUrl: 'https://tinyurl.com/ybfrfrr9',
+        },
+      };
+
+      ReactDOM.render(
+        <Comment
+           date={comment.date}
+           text={comment.text}
+           author={comment.author}
+        />,
+        document.getElementById('root')
+      );
+
+    </script>
+  </body>
+</html>`
