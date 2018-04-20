@@ -16,8 +16,20 @@
               constructor(props){
                 super(props);
                 this.state={
-                  favoriteFood:'Ice-cream'
+                  number:1
                 }
+              }
+
+              increment(event){
+                this.setState({
+                  number:this.state.number + 1
+                })
+              }
+
+              decrement(event){
+                this.setState({
+                  number: Math.max(1, this.state.number -1)
+                })
               }
 
               render(){
@@ -28,7 +40,9 @@
                         alt="cogi"
                         />
                       <h2>Type of Dog: {this.props.label}</h2>
-                       <h3>Favorite Food: {this.state.favoriteFood}</h3>
+                      <h3>Favorite Food: {this.state.number}</h3>
+                       <button onClick={this.decrement.bind(this)}>Decrement</button>
+                       <button onClick={this.increment.bind(this)}>Increment</button>
                       <p>Birthday: {this.props.birthday}</p>
                       <p>Today Date: {this.props.date.toLocaleDateString()}  </p>
                   </div>
