@@ -1,0 +1,64 @@
+<html>
+	<head>
+		<title>React App</title>
+	</head>
+	<body>
+		
+		<div id="app"></div><!--UI container-->
+
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/react/16.1.0/umd/react.development.js"></script><!--render react to Dom-->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/16.1.0/umd/react-dom.development.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.34/browser.min.js"></script><!--enable JSX & ES6-->
+        <script type="text/babel">
+        	
+            class Counter extends React.Component{
+
+              constructor(props){
+                super(props);
+                this.state={
+                  currI : 'https://tinyurl.com/ybcdtjha',
+                  prevI : 'http://i.imgur.com/BMzrYPNl.jpg'
+                }
+              }
+
+              changeImage(){
+                const swap = this.state.currI;
+                this.setState({
+                  currI: this.state.prevI,
+                  prevI: swap,
+                })
+              }
+
+              render(){
+                return(
+                  <div>
+                      <img 
+                        src={this.state.currI} 
+                        alt="cogi"
+                        />
+                      <button type="button" className="btn btn-primary" onClick={() => this.changeImage()}>Click This</button>
+                      <h2>Type of Dog: {this.props.label}</h2>
+                      <p>Birthday: {this.props.birthday}</p>
+                      <p>Today Date: {this.props.date.toLocaleDateString()}  </p>
+                  </div>
+                );
+              }
+            }
+
+            const info={
+              date: new Date(),
+              birthday: '01/01/2017',
+            }
+
+            Counter.defaultProps={
+              label:"Welsh Corgi"
+            }
+
+            ReactDOM.render(
+              <Counter date={info.date} image={info.image}  birthday={info.birthday}/>,
+              document.getElementById('app')
+            );
+
+        </script>
+	</body>
+</html>`
